@@ -8,3 +8,5 @@ PATH=location of excel file
 <p>Requires Python3, pip3, openpyxl library to run.</p>
 Linux:
 	./install.h
+
+PROJECT FOR  WestCal Academy FOR DATA MANAGEMENT.

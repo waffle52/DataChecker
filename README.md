@@ -4,7 +4,7 @@
 USAGE: Python3 main.py PATH
 PATH=location of excel file
 
-## INSTALLION:
+## INSTALLATION:
 <p>Requires Python3, pip3, openpyxl library to run.</p>
 Linux:
 	./install.h

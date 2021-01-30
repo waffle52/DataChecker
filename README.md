@@ -11,4 +11,4 @@ PATH=location of excel file
 <br/>Mac:
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;./mac-install.sh
 
-PROJECT FOR  WestCal Academy FOR DATA MANAGEMENT.
+<br/><br/>PROJECT FOR  WestCal Academy FOR DATA MANAGEMENT.

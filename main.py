@@ -3,17 +3,31 @@
 # GNU GPLv3
 from openpyxl import Workbook
 from openpyxl import load_workbook
-from sys import argv
 from check_funcs import *
+from correction_funcs import *
+from funcs import *
+import sys
 
 def main():
     """
     Main code to check parameters exist and check if failed file exists
     """
-    if (len(argv) != 2):
+
+    # check argument length
+    if (len(sys.argv) != 2):
         print ("USAGE: Python3 main.py PATH")
-        exit (1)
-    wb = load_workbook(filename=argv[1])
+        sys.exit(1)
+    file_name = get_file_name(sys.argv[1])
+    new_file = ""
+    # check if new file is to be created from old one with updated changes
+    # new_file = begin_prompt()
+    # check if the file passed is an excel file
+    try:
+        wb = load_workbook(filename=sys.argv[1])
+    except:
+        print("Cannot open. Program only designed for excel files EX: .xlsx")
+        sys.exit(1)
+
     ws = wb.worksheets[0]
     func_track = 0
     first_try = 0
@@ -57,5 +71,14 @@ def findBlank(ws, column_max, row_max):
                 return (row_end)
             row_end += 1
     return (row_end)
+
+def begin_prompt():
+    # add ask user for end of line for stop variable?
+    print("Enable zip code rewrite?")
+    print("This will create a new file with _new.xslx at the end in the folder of the file given with each zip code converted to nine-digit based zip if address is present in file")
+    answer = input("Enable (Y/N): ")
+    if ("Y" in answer or "y" in answer):
+        return (True)
+    return (False)
 
 main()

@@ -6,9 +6,9 @@ PATH=location of excel file
 
 ## INSTALLATION:
 <p>Requires Python3, pip3, openpyxl library to run.</p>
-Linux:
-	./linux-install.sh
-Mac:
-	./mac-install.sh
+<br/>Linux:
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;./linux-install.sh
+<br/>Mac:
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;./mac-install.sh
 
-PROJECT FOR  WestCal Academy FOR DATA MANAGEMENT.
+<br/><br/>PROJECT FOR  WestCal Academy FOR DATA MANAGEMENT.

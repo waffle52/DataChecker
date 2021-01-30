@@ -6,8 +6,9 @@ import re
 def hasNumbers(inputString):
     return any(char.isdigit() for char in inputString)
 
+
 def ID_CHECK(val):
-    # Good checks to make sure ID is a number. 
+    # Good checks to make sure ID is a number.
     if (str == None):
         return (None)
     try:
@@ -16,11 +17,13 @@ def ID_CHECK(val):
         return (False)
     return (True)
 
+
 def SALUTION_CHECK(val):
     # Check for other options?
     if (val == "Mr." or val == "Ms." or val == "Dr."):
         return (True)
     return (False)
+
 
 def FIRST_NAME_CHECK(val):
     # Just check only letters, first letter uppercase, no space after.
@@ -30,6 +33,7 @@ def FIRST_NAME_CHECK(val):
         return (True)
     return (False)
 
+
 def MIDDLE_NAME_CHECK(val):
     # Middle name can be blank? but if not just the first letter and dot. ?
     if (val == None):
@@ -38,11 +42,13 @@ def MIDDLE_NAME_CHECK(val):
         return (True)
     return (False)
 
+
 def LAST_NAME_CHECK(val):
     # only letters, space only in between if multiple words for last time. but no spaces before first word or after last word. 
     if (hasNumbers(val) == False and val != "" and val != " "):
         return (True)
     return (False)
+
 
 def SUFFIX_CHECK(val):
     # JD, Ed.D, MBA, Esq, Ph.D, M.D, CFP, MA, MPH,? 
@@ -50,11 +56,13 @@ def SUFFIX_CHECK(val):
         return (True)
     return (False)
 
+
 def PARTNER_CHECK(val):
     # so the only options are formal and student?
     if (val == "formal" or val == "student"):
         return (True)
     return (False)
+
 
 def SCHOOL_CHECK(val):
     # check for spaces at first & last word, error if blank? Does this need to be there?
@@ -62,11 +70,13 @@ def SCHOOL_CHECK(val):
         return (True)
     return (False)
 
+
 def INTERNSHIP_CHECK(val):
     # Check for spaces at first & last word, error if blank? Does this need to be there?
     if (val != None and val != " " and val != ""):
         return (True)
     return (False)
+
 
 def INTERNSHIP_TYPE_CHECK(val):
     # Check for spaces at first & last word unkless just one word? Error if blank
@@ -74,11 +84,13 @@ def INTERNSHIP_TYPE_CHECK(val):
         return (True)
     return (False)
 
+
 def PLACEMENT_CHECK(val):
     # Check for spaces at first & last word, error if blank? Does this need to be there?
     if (val != None and val != " " and val != ""):
         return (True)
     return (False)
+
 
 def PLACEMENT_DATE_CHECK(val):
     # Ask if only these options otherwise confirm second word is a year otherwise error
@@ -88,6 +100,7 @@ def PLACEMENT_DATE_CHECK(val):
         return (True)
     return (False)
 
+
 def END_DATE_CHECK(val):
     # Ask if only these options otherwise confirm second word is a year otherwise error
     words = ["Summer", "Fall", "Spring", "Winter"]
@@ -96,11 +109,13 @@ def END_DATE_CHECK(val):
         return (True)
     return (False)
 
+
 def NEW_SOURCE_CHECK(val):
     # only employer and pesa? No other options.
     if (val == "employer" or val == "PESA"):
         return (True)
     return (False)
+
 
 def STATUS_CHECK(val):
     # only these 4 options otherwise error? if blank give error?
@@ -108,11 +123,13 @@ def STATUS_CHECK(val):
         return (True)
     return (False)
 
+
 def FIRST_GEN_CHECK(val):
     # only these 2 options otherwise error? if blank give error?
     if (val == "first" or val == "multiple"):
         return (True)
     return (False)
+
 
 def INTERNATIONAL_CHECK(val):
     # only these 2 options otherwise error? if blank give error?
@@ -120,17 +137,20 @@ def INTERNATIONAL_CHECK(val):
         return (True)
     return (False)
 
+
 def GENDER_CHECK(val):
     # only these 2 options otherwise error? if blank give error?
     if (val == "Male" or val == "Female"):
         return (True)
     return (False)
 
+
 def AGE_CHECK(val):
     # Check each number is an int and has format with "to". if blank give error?
     if (val != None and val != " "):
         return (True)
     return (False)
+
 
 def ETHNICITY_CHECK(val):
     # only these options? error if blank?
@@ -140,11 +160,13 @@ def ETHNICITY_CHECK(val):
         return (True)
     return (False)
 
+
 def REENTRY_CHECK(val):
     # only these options? error if blank?
     if (val == "clear" or val == "re-entry"):
         return (True)
     return (False)
+
 
 def FOSTER_CHECK(val):
     # only these options? error if blank?
@@ -152,17 +174,20 @@ def FOSTER_CHECK(val):
         return (True)
     return (False)
 
+
 def OCCUPATION_CHECK(val):
     # ok if blank? Otherwise if not blank just check spacing at first and last word
     if (val == None or val != "" or val != " "):
         return (True)
     return (False)
 
+
 def COMPANY_CHECK(val):
     # ok if blank? Otherwise if not blank just check spacing at first and last word
     if (val == None or val != "" or val != " "):
         return (True)
     return (False)
+
 
 def EMAIL_CHECK(val):
     # ok if blank? Otherwise if not blank check formatting. 
@@ -177,11 +202,13 @@ def EMAIL_CHECK(val):
         return (True)
     return (False)
 
+
 def WEBSITE_CHECK(val):
     # if blank no error otherwise if blank, skip? verify website?
     if (val == None or val != "" and val != " " or val):
         return (True)
     return (False)
+
 
 def PHONE_NUMBER_CHECK(val):
     # ok if blank but if not check format
@@ -194,6 +221,7 @@ def PHONE_NUMBER_CHECK(val):
         return (True)
     return (False)
 
+
 def FIRST_CONTACT_CHECK(val):
     # Error if blank? or ok if row blank? Only these options?
     contact = ["Business Event", "MEGA Phase 1", "Political Event", "Professional Event",
@@ -202,11 +230,13 @@ def FIRST_CONTACT_CHECK(val):
         return (True)
     return (False)
 
+
 def BEST_PERSON_CHECK(val):
     # error if blank? Otherwise just check if it is JP, JL, or CC
     if (val != " " or val != None):
         return (True)
     return (False)
+
 
 def ADDRESS_CHECK(val):
     # if blank no error, if not blank just check spacing?
@@ -214,17 +244,20 @@ def ADDRESS_CHECK(val):
         return (True)
     return (False)
 
+
 def SUITE_CHECK(val):
     # if blank error, if not blank just check spacing?
     if (val != " " or val == None):
         return (True)
     return (False)
 
+
 def CITY_CHECK(val):
     # if blank give error, if not blank check spacing or shuld be N/A
     if (val != " "):
         return (True)
     return (False)
+
 
 def STATE_CHECK(val):
     # if blank give error? Should only have a state or N/A
@@ -236,6 +269,7 @@ def STATE_CHECK(val):
     if (val in states or val == "N/A"):
         return (True)
     return (False)
+
 
 def ZIP_CHECK(val):
     # Should have only a number with no spaces, unless N/A if blank give error? 
@@ -252,6 +286,7 @@ def ZIP_CHECK(val):
         return (True)
     return (False)
 
+
 def COUNTRY_CHECK(val):
     # USA otherwise if blank give error?
     # if (COUNTRY_CHECK)
@@ -259,17 +294,20 @@ def COUNTRY_CHECK(val):
         return (True)
     return (False)
 
+
 def HOMELESS_CHECK(val):
     # Only these two options? if blank give error?
     if (val == "Settled" or val == "Homeless"):
         return (True)
     return (False)
 
+
 def SOURCE_CHECK(val):
     # if blank do not give error? Otherwise it should be one of 3 options?
     if (val == "Joseph Lopez" or val == "John Paul Tabakian" or val == "Christopher Castillo"):
         return (True)
     return (False)
+
 
 def VET_CHECK(val):
     # Ok to be blank? Otherwise if not blank just check spaces at first & last word. 

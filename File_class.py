@@ -12,17 +12,26 @@ class File:
     """
 
     def __init__(self, row_y, column_x, f, errno):
+        """
+        y is the current y axis
+        x is the current x axis
+        f is the txt document
+        errno is to enable debugging
+        name is the current directory name
+        """
         self.y = row_y
         self.x = column_x
         self.f = f
         self.errno = errno
+        self.name = ""
 
     def get_info(self, des):
         switcher = {
             'x': self.x,
             'y': self.y,
             'f': self.f,
-            'e': self.errno
+            'e': self.errno,
+            'name': self.name
         }
         return (switcher.get(des))
 
@@ -38,5 +47,8 @@ class File:
             return (0)
         if (des == "e"):
             self.errno = new_val
+            return (0)
+        if (des == "name"):
+            self.name = new_val
             return (0)
         return (1)

@@ -53,6 +53,7 @@ def main():
     # loop through length of data present in the excel file passed
     for column_x in range(1, column_max):
         info.set_info('x', column_x)
+        info.set_info("name", ws.cell(1, column_x).value)
         for row_y in range(2, row_max):
             info.set_info('y', row_y)
             column_name = ws.cell(1, column_x).value

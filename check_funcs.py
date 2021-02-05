@@ -4,10 +4,13 @@ import re
 
 
 def hasNumbers(inputString):
-    return any(char.isdigit() for char in inputString)
+    try:
+        input = str(inputString)
+    except:
+        return (True)
+    return any(char.isdigit() for char in input)
 
-
-def ID_CHECK(val):
+def ID_CHECK(val, info):
     # Checks to make sure ID is a number.
     if (str is None):
         return (None)
@@ -18,14 +21,14 @@ def ID_CHECK(val):
     return (True)
 
 
-def SALUTION_CHECK(val):
+def SALUTION_CHECK(val, info):
     # Check for one of three options
     if (val == "Mr." or val == "Ms." or val == "Dr."):
         return (True)
     return (False)
 
 
-def FIRST_NAME_CHECK(val):
+def FIRST_NAME_CHECK(val, info):
     # Just check only letters, first letter uppercase, no space after.
     # ADD: Check for uppercase letter in first letter.
     if (val is None):
@@ -35,7 +38,7 @@ def FIRST_NAME_CHECK(val):
     return (False)
 
 
-def MIDDLE_NAME_CHECK(val):
+def MIDDLE_NAME_CHECK(val, info):
     # Focus on skipping
     if (val is None):
         return (True)
@@ -44,27 +47,27 @@ def MIDDLE_NAME_CHECK(val):
     return (False)
 
 
-def LAST_NAME_CHECK(val):
+def LAST_NAME_CHECK(val, info):
     # Return true if only letters, no spaces before first or after last word.
     if (hasNumbers(val) is False and val[0] != " " and val[len(val) - 1] != " "):
         return (True)
     return (False)
 
 
-def SUFFIX_CHECK(val):
+def SUFFIX_CHECK(val, info):
     # JD, Ed.D, MBA, Esq, Ph.D, M.D, CFP, MA, MPH.
     # Can be a lot dont focvus and skip.
     return (True)
 
 
-def PARTNER_CHECK(val):
+def PARTNER_CHECK(val, info):
     # so the only options are formal and student?
     if (val == "formal" or val == "student"):
         return (True)
     return (False)
 
 
-def SCHOOL_CHECK(val):
+def SCHOOL_CHECK(val, info):
     # check for spaces at first & last word, error if blank?
     # Check for uppercase on every word except of's?
     if (val is None):
@@ -76,38 +79,44 @@ def SCHOOL_CHECK(val):
     return (False)
 
 
-def INTERNSHIP_CHECK(val):
+def INTERNSHIP_CHECK(val, info):
     # Check for spaces at first & last word.
     # Check for uppercase on every word except of's?
     # if blank give error,
     if (val is None):
         return (False)
-    if (val[0] == " " or val[len(val) - 1] == " "):
+    if (hasNumbers(val) is True):
         return (False)
-    return (False)
+    try:
+        if (val[0] == " " or val[len(val) - 1] == " "):
+            return (False)
+    except TypeError:
+        print("INTERNSHIP_CHECK Error-value: {} at Col: {} Row: {}"
+              .format(val, info.get_info('x'), info.get_info('y')))
+    return (True)
 
 
-def INTERNSHIP_TYPE_CHECK(val):
+def INTERNSHIP_TYPE_CHECK(val, info):
     # Check for spaces at first & last word unkless just one word?
     # give error if blank.
     if (val is None):
         return (False)
     if (val[0] == " " or val[len(val) - 1] == " "):
         return (False)
-    return (False)
+    return (True)
 
 
-def PLACEMENT_CHECK(val):
+def PLACEMENT_CHECK(val, info):
     # Check for spaces at first & last word, error if blank?
     # give error if blank.
     if (val is None):
         return (False)
     if (val[0] == " " or val[len(val) - 1] == " "):
         return (False)
-    return (False)
+    return (True)
 
 
-def PLACEMENT_DATE_CHECK(val):
+def PLACEMENT_DATE_CHECK(val, info):
     # Check for only these options and year.
     value = str(val).split()[0]
     try:
@@ -120,7 +129,7 @@ def PLACEMENT_DATE_CHECK(val):
     return (False)
 
 
-def END_DATE_CHECK(val):
+def END_DATE_CHECK(val, info):
     # Ask if only these options otherwise confirm second word is a year.
     words = ["Summer", "Fall", "Spring", "Winter"]
     value = str(val).split()[0]
@@ -129,7 +138,7 @@ def END_DATE_CHECK(val):
     return (False)
 
 
-def NEW_SOURCE_CHECK(val):
+def NEW_SOURCE_CHECK(val, info):
     # only employer and pesa? No other options.
     # make sure is not blank.
     if (val is None):
@@ -139,7 +148,7 @@ def NEW_SOURCE_CHECK(val):
     return (False)
 
 
-def STATUS_CHECK(val):
+def STATUS_CHECK(val, info):
     # only these 4 options otherwise error? if blank give error?
     # make sure is not blank.
     if (val is None):
@@ -151,7 +160,7 @@ def STATUS_CHECK(val):
     return (False)
 
 
-def FIRST_GEN_CHECK(val):
+def FIRST_GEN_CHECK(val, info):
     # only these 2 options otherwise error? if blank give error
     if (val is None):
         return (False)
@@ -162,7 +171,7 @@ def FIRST_GEN_CHECK(val):
     return (False)
 
 
-def INTERNATIONAL_CHECK(val):
+def INTERNATIONAL_CHECK(val, info):
     # only these 2 options otherwise error?
     if (val is None):
         return (False)
@@ -171,7 +180,7 @@ def INTERNATIONAL_CHECK(val):
     return (False)
 
 
-def GENDER_CHECK(val):
+def GENDER_CHECK(val, info):
     # Give error if none otherwise those 3 options.
     if (val is None):
         return (False)
@@ -180,7 +189,7 @@ def GENDER_CHECK(val):
     return (False)
 
 
-def AGE_CHECK(val):
+def AGE_CHECK(val, info):
     # Check each number is an int and has format with "to".
     # Check for "under 16" otheriwse verify that cell matches"number to number"
     if (val is None):
@@ -190,20 +199,20 @@ def AGE_CHECK(val):
     return (False)
 
 
-def ETHNICITY_CHECK(val):
+def ETHNICITY_CHECK(val, info):
     # error if blank
     if (val is None):
         return (False)
     eth = ["African American", "American Indian / Alaskan Native",
            "Asian", "Filipino", "Hispanic", "Middle Eastern",
-           "Multi-Ethnicity", "Other", "Pacific Islander", "Unknown", "White",
-           "White Non-Hispanic"]
+           "Multi-Ethnicity", "Other", "Pacific Islander", "Unknown",
+           "White", "White Non-Hispanic"]
     if (val in eth):
         return (True)
     return (False)
 
 
-def REENTRY_CHECK(val):
+def REENTRY_CHECK(val, info):
     # error if blank
     if (val is None):
         return (False)
@@ -212,7 +221,7 @@ def REENTRY_CHECK(val):
     return (False)
 
 
-def FOSTER_CHECK(val):
+def FOSTER_CHECK(val, info):
     # give error if blank
     if (val is None):
         return (False)
@@ -221,25 +230,29 @@ def FOSTER_CHECK(val):
     return (False)
 
 
-def OCCUPATION_CHECK(val):
+def OCCUPATION_CHECK(val, info):
     # Return True if blank otherwise just check spacing at first and last word.
     if (val is None):
         return (True)
-    if (val[0] == " " or val[len(val) - 1] == " "):
-        return (False)
-    return (False)
+    try:
+        if (val[0] == " " or val[len(val) - 1] == " "):
+            return (False)
+    except TypeError:
+        print("OCCUPATION_CHECK ERROR-value: {} at col: {} - row: {}"
+              .format(val, info.get_info('x'), info.get_info('y')))
+    return (True)
 
 
-def COMPANY_CHECK(val):
+def COMPANY_CHECK(val, info):
     # Return True if blank Otherwise just check spacing at first and last word.
     if (val is None):
         return (True)
     if (val[0] == " " or val[len(val) - 1] == " "):
         return (False)
-    return (False)
+    return (True)
 
 
-def EMAIL_CHECK(val):
+def EMAIL_CHECK(val, info):
     # Return True if blank Otherwise if not blank check formatting.
     pattern = re.compile("^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$")
     if (val is None):
@@ -253,26 +266,30 @@ def EMAIL_CHECK(val):
     return (False)
 
 
-def WEBSITE_CHECK(val):
+def WEBSITE_CHECK(val, info):
     # Return True if blank.
     if (val is None or val != "" and val != " " or val):
         return (True)
     return (False)
 
 
-def PHONE_NUMBER_CHECK(val):
+def PHONE_NUMBER_CHECK(val, info):
     # Return true if blank but if not check format.
-    if (val is None):
+    if (val is None or type(val) != str):
         return (True)
     pattern = re.compile("^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$")
-    if (pattern.match(val) is None):
-        return (False)
-    else:
-        return (True)
+    try:
+        if (pattern.match(val) is None):
+            return (False)
+        else:
+            return (True)
+    except TypeError:
+        print("PHONE_NUMBER_CHECK Error-value: {}".format(val))
+        pass
     return (False)
 
 
-def FIRST_CONTACT_CHECK(val):
+def FIRST_CONTACT_CHECK(val, info):
     # Return false if blank.
     if (val is None):
         return (False)
@@ -283,7 +300,7 @@ def FIRST_CONTACT_CHECK(val):
     return (False)
 
 
-def BEST_PERSON_CHECK(val):
+def BEST_PERSON_CHECK(val, info):
     # Return False if blank.
     if (val is None):
         return (False)
@@ -292,17 +309,17 @@ def BEST_PERSON_CHECK(val):
     return (False)
 
 
-def ADDRESS_CHECK(val):
+def ADDRESS_CHECK(val, info):
     # NO RULE JUST SET TO PASS
     return (True)
 
 
-def SUITE_CHECK(val):
+def SUITE_CHECK(val, info):
     # PASS - add to later
     return (True)
 
 
-def CITY_CHECK(val):
+def CITY_CHECK(val, info):
     # Return False if blank or should be N/A (True).
     if (val is None):
         return (False)
@@ -313,7 +330,7 @@ def CITY_CHECK(val):
     return (False)
 
 
-def STATE_CHECK(val):
+def STATE_CHECK(val, info):
     # Return False if blank, return ture if N/A or one of the states.
     if (val is None):
         return (False)
@@ -327,7 +344,7 @@ def STATE_CHECK(val):
     return (False)
 
 
-def ZIP_CHECK(val):
+def ZIP_CHECK(val, info):
     # Return False if none, unless N/A or zip then check format.
     if (val == "N/A"):
         return (True)
@@ -342,7 +359,7 @@ def ZIP_CHECK(val):
         return (True)
 
 
-def COUNTRY_CHECK(val):
+def COUNTRY_CHECK(val, info):
     # Returns true if country is one of three options.
     if (val is None):
         return (False)
@@ -353,7 +370,7 @@ def COUNTRY_CHECK(val):
     return (False)
 
 
-def HOMELESS_CHECK(val):
+def HOMELESS_CHECK(val, info):
     # Returns true for Settled or Homeless.
     if (val is None):
         return (False)
@@ -362,7 +379,7 @@ def HOMELESS_CHECK(val):
     return (False)
 
 
-def SOURCE_CHECK(val):
+def SOURCE_CHECK(val, info):
     # Return true if blank or one of 3 names.
     if (val is None):
         return (True)
@@ -373,7 +390,7 @@ def SOURCE_CHECK(val):
     return (False)
 
 
-def VET_CHECK(val):
+def VET_CHECK(val, info):
     # Return true if blank or one of three options.
     if (val is None or val == "Marines" or val == "Veteran" or val == "Army"):
         return (True)

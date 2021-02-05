@@ -7,6 +7,7 @@ from openpyxl import utils
 from correction_funcs import *
 from funcs import *
 from datatypes import *
+from File_class import *
 import sys
 
 
@@ -49,10 +50,13 @@ def main():
     f.write("WESTCAL CHECKER ERRORS:\n")
     f.close()
     f = open("Results.txt", "a")
+    info = File(0, 0, f)
 
     # loop through length of data present in the excel file passed
     for column_x in range(1, column_max):
+        info.set_info('x', column_x)
         for row_y in range(2, row_max):
+            info.set_info('y', row_y)
             column_name = ws.cell(1, column_x).value
             if (track == stop):
                 track = 1
@@ -60,7 +64,7 @@ def main():
             if (column_name != prev):
                 prev = column_name
                 func_num += 1
-            if (func_list[func_num](ws.cell(row_y, column_x).value) is False):
+            if (func_list[func_num](ws.cell(row_y, column_x).value, info) is False):
                 mark(column_name, column_x, row_y, f)
             track += 1
     print("Done!")

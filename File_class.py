@@ -11,16 +11,18 @@ class File:
     access to the file and what to debug
     """
 
-    def __init__(self, row_y, column_x, f):
+    def __init__(self, row_y, column_x, f, errno):
         self.y = row_y
         self.x = column_x
         self.f = f
+        self.errno = errno
 
     def get_info(self, des):
         switcher = {
             'x': self.x,
             'y': self.y,
             'f': self.f,
+            'e': self.errno
         }
         return (switcher.get(des))
 
@@ -33,5 +35,8 @@ class File:
             return (0)
         if (des == "f"):
             self.f = new_val
+            return (0)
+        if (des == "e"):
+            self.errno = new_val
             return (0)
         return (1)

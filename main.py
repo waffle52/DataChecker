@@ -22,8 +22,6 @@ def main():
         print("USAGE: Python3 main.py PATH")
         sys.exit(1)
     file_name = get_file_name(sys.argv[1])
-    # new_file = ""
-    # new_file = begin_prompt()
 
     # check if the file passed is an excel file
     try:
@@ -45,12 +43,12 @@ def main():
     stop = findBlank(ws, column_max, row_max) - 1
 
     # create Results.txt file to report any errors
-    print("Creating txt file!")
     f = open("Results.txt", "w")
     f.write("WESTCAL CHECKER ERRORS:\n")
     f.close()
     f = open("Results.txt", "a")
-    info = File(0, 0, f)
+    info = File(0, 0, f, 0)
+    begin_prompt(info)
 
     # loop through length of data present in the excel file passed
     for column_x in range(1, column_max):

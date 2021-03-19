@@ -33,7 +33,7 @@ def ID_CHECK(val, info):
 def SALUTION_CHECK(val, info):
     # Check for one of three options
     try:
-        if (val == "Mr." or val == "Ms." or val == "Dr."):
+        if (val == "Mr." or val == "Ms." or val == "Dr." or val == "Mx."):
             return (True)
     except:
         if (info.get_info('e') == 1):
@@ -136,8 +136,6 @@ def INTERNSHIP_CHECK(val, info):
     # if blank give error.
     try:
         if (val is None):
-            return (False)
-        if (hasNumbers(val) is True):
             return (False)
         if (val[0] == " " or val[len(val) - 1] == " "):
             return (False)
@@ -252,7 +250,7 @@ def STATUS_CHECK(val, info):
     try:
         if (val is None):
             return (False)
-        if (val == "citizen" or val == "permanent" or val == "visa"):
+        if (val == "citizen" or val == "permanent" or val == "visa" or val == "refugee" or val == "temporary"):
             return (True)
         if (val == "unknown"):
             return (True)
@@ -304,7 +302,7 @@ def GENDER_CHECK(val, info):
     try:
         if (val is None):
             return (False)
-        if (val == "Male" or val == "Female" or val == "non-binary"):
+        if (val == "Male" or val == "Female" or val == "Non-Binary"):
             return (True)
     except:
         if (info.get_info('e') == 1):
@@ -340,7 +338,7 @@ def ETHNICITY_CHECK(val, info):
         eth = ["African American", "American Indian / Alaskan Native",
                "Asian", "Filipino", "Hispanic", "Middle Eastern",
                "Multi-Ethnicity", "Other", "Pacific Islander", "Unknown",
-               "White", "White Non-Hispanic"]
+               "White", "White Non-Hispanic", "Multi-Ethnic"]
         if (val in eth):
             return (True)
     except:
@@ -479,6 +477,10 @@ def PHONE_NUMBER_CHECK(val, info):
                           info.get_info('y')))
             return (False)
     return (False)
+
+def PHONE_IGNORE(val, info):
+    # pass
+    pass
 
 
 def FIRST_CONTACT_CHECK(val, info):
@@ -640,7 +642,7 @@ def SOURCE_CHECK(val, info):
 def VET_CHECK(val, info):
     # Return true if blank or one of three options.
     try:
-        if (val is None or val == "Marines" or val == "Veteran" or val == "Army"):
+        if (val is None or val == "Marines" or val == "Veteran" or val == "Army" or val == "Navy"):
             return (True)
     except:
         if (info.get_info('e') == 1):

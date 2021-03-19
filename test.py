@@ -1,45 +1,31 @@
 #!/usr/bin/env python3
 import kivy
 import os
-from kivy.app import App
+from FileChooserWindow import *
 from kivy.uix.button import Button
 from kivy.uix.label import Label
-from kivy.uix.boxlayout import BoxLayout
 from kivy.graphics import Color, Rectangle
 from kivy.uix.image import Image
 kivy.require('1.9.0')
-from kivy.uix.image import AsyncImage
-from kivy.uix.floatlayout import FloatLayout
 from kivy.lang import Builder
 from kivy.config import Config
 from kivy.uix.textinput import TextInput
-from kivy.factory import Factory
-from kivy.properties import ObjectProperty
-from kivy.uix.popup import Popup
+from kivy.app import App
 
+#test
+from kivy.uix.popup import Popup
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 Builder.load_string('''
 ''')
 
-class LoadDialog(FloatLayout):
-    load = ObjectProperty(None)
-    cancel = ObjectProperty(None)
-
-
-class SaveDialog(FloatLayout):
-    save = ObjectProperty(None)
-    text_input = ObjectProperty(None)
-    cancel = ObjectProperty(None)
-
-
 class CustomLayout(FloatLayout):
-
     def __init__(self, **kwargs):
         # make sure we aren't overriding any important functionality
         super(CustomLayout, self).__init__(**kwargs)
 
         with self.canvas.before:
-            Color(0.411, 0.411, 0.411, 0.411)  # green; colors range from 0-1 instead of 0-255
+            Color(0.411, 0.411, 0.411, 0.411)
             self.rect = Rectangle(size=self.size, pos=self.pos)
 
         self.bind(size=self._update_rect, pos=self._update_rect)
@@ -48,15 +34,11 @@ class CustomLayout(FloatLayout):
         self.rect.pos = instance.pos
         self.rect.size = instance.size
 
-def on_enter(instance, value):
-    print('User pressed enter in', instance)
-
 class MainApp(App):
     def callback(self, event):
-        popup = Popup(title='Test popup',
-                      content=Label(text='Hello world'),
-                      size_hint=(None, None), size=(400, 400))
-        popup.open()
+        #window = FileChooserWindow()
+        #window.run()
+        pass
 
     def build(self):
         self.title = 'WestCal DataChecker'

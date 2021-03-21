@@ -10,6 +10,7 @@ def hasNumbers(inputString):
         return (True)
     return any(char.isdigit() for char in input)
 
+
 def ID_CHECK(val, info):
     # Checks to make sure ID is a number.
     try:
@@ -18,8 +19,8 @@ def ID_CHECK(val, info):
         number = int(val)
     except ValueError:
         print("{}-error: {} at col: {} - row: {}"
-                  .format(info.get_info("name"), val, info.get_info('x'),
-                          info.get_info('y')))
+              .format(info.get_info("name"), val, info.get_info('x'),
+                      info.get_info('y')))
         return (False)
     except:
         if (info.get_info('e') == 1):
